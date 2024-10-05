@@ -45,7 +45,7 @@ int main() {
         printf("Size of struct without pragma: %zu bytes\n", sizeof(without));
 	printf("Address of without.a: %p\n", (void *)&without.a);
         printf("Address of without.b: %p\n", (void *)&without.b);
-        printf("Address of orig.c: %p\n", (void *)&without.c);
+        printf("Address of without.c: %p\n", (void *)&without.c);
 
 	printf("Size of struct with pragma1: %zu bytes\n", sizeof(with1));
         printf("Address of pragma1.a: %p\n", (void *)&with1.a);
@@ -67,6 +67,6 @@ int main() {
         return 0;
 }
 //pack(1) reduces the size of the sum by eleminating the padding. So it will just sum all memory sizes of members. 1+4+8=13
-//pack2(2 reduces the size of int b by 2 byte. Without padding it. So the size will be 14. 1+4+x+8=14. x is equal to 1 because 2 elements are unpacked.
-//pack(4) will try to align int b to 4 bytes, which will result padding 3 of bytes. So the size will be 16.  1+4+3+8 = 16. 3 is the padding. Most unefficient alignment in this situation,
+//pack2(2) aligns by 2 byte. It adds padding after int. So the size will be 14. 1+4+x+8=14. x is equal to 1 because 2 elements are unpacked.
+//pack(4) will try to align int b to 4 bytes, which will result padding of 3 bytes. So the size will be 16.  1+4+3+8 = 16. 3 is the padding. Most unefficient alignment in this situation,
 //as the memory is used as much as possible, and cpu cycles will not be efficient.
